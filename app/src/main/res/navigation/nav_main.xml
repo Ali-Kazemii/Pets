@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/subCategoryFragment">
+
+    <fragment
+        android:id="@+id/subCategoryFragment"
+        android:name="com.artinsoft.pets.presentation.subcategory.SubCategoryFragment"
+        android:label="SubCategoryFragment" >
+        <action
+            android:id="@+id/action_subCategoryFragment_to_categoryBottomSheet"
+            app:destination="@id/categoryBottomSheet" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/categoryBottomSheet"
+        android:name="com.artinsoft.pets.presentation.category.CategoryBottomSheet"
+        android:label="CategoryBottomSheet" >
+
+        <argument
+            android:name="listCategory"
+            app:argType="com.artinsoft.pets.domain.model.Categories" />
+    </dialog>
+
+
+</navigation>

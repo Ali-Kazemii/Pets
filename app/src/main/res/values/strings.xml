@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Pets</string>
+    <string name="cat_category">Cat Category</string>
+    <string name="alert_message">Do you want to exit?</string>
+    <string name="ok">Okay</string>
+    <string name="no">No</string>
+    <string name="load_more">Load More</string>
+    <string name="choose_category">Choose Category</string>
+    <string name="please_wait">please wait</string>
+    <string name="data_is_not_exist">data is not exist</string>
+
+</resources>

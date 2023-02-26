@@ -1,0 +1,102 @@
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
+    id("kotlin-parcelize")
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.artinsoft.pets"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    buildToolsVersion '33.0.0'
+}
+
+dependencies {
+    implementation("androidx.core:core-ktx:$core_version")
+    implementation("androidx.appcompat:appcompat:$appcompat_version")
+    implementation("com.google.android.material:material:$material_version")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintlayout_version")
+    //navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    //lifecycle
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_livedata_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-extensions:$lifecycle_version")
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutines_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
+    //Dagger-Hilt
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    implementation 'androidx.test:core-ktx:1.5.0'
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
+    implementation("androidx.hilt:hilt-navigation-fragment:$hilt_fragment_version")
+    kapt("androidx.hilt:hilt-compiler:$hilt_compiler_version")
+    //retrofit
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
+    implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    //glide
+    implementation("com.github.bumptech.glide:glide:$glide_version")
+    kapt("com.github.bumptech.glide:compiler:$glide_version")
+    // Room
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+    //Local unit tests
+    implementation("androidx.test:core-ktx:$test_core_ktx_version")
+    testImplementation("junit:junit:$junit_version")
+    testImplementation("com.google.truth:truth:$truth_version")
+    testImplementation("com.squareup.okhttp3:okhttp:$okhttp_version")
+    testImplementation ("org.mockito:mockito-core:$mokito_version")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version")
+    testImplementation ("androidx.arch.core:core-testing:$test_core_version")
+    testImplementation("androidx.room:room-testing:$room_version")
+    //Instrumented unit tests
+    androidTestImplementation("androidx.test:core-ktx:$test_core_ktx_version")
+    androidTestImplementation("junit:junit:$junit_version")
+    androidTestImplementation("androidx.test.ext:junit:$android_junit_version")
+    androidTestImplementation("com.google.truth:truth:$truth_version")
+    androidTestImplementation("androidx.arch.core:core-testing:$test_core_version")
+    androidTestImplementation("androidx.test:runner:$runner_version")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version")
+    androidTestImplementation ("org.mockito:mockito-core:$mokito_version")
+    androidTestImplementation ("com.google.dagger:hilt-android-testing:$hilt_test")
+    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hilt_test")
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version")
+
+
+}
