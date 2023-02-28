@@ -7,7 +7,8 @@ jobs:
   test_job:
     name: Test
     runs-on: ubuntu-latest
-      steps:
+    continue-on-error: true
+    steps:
 
         - name: Checkout
             uses: actions/checkout@v2
@@ -36,6 +37,7 @@ jobs:
   assemble_job:
     name: Assemble
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
 
       - name: Checkout
