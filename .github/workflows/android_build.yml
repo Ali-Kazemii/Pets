@@ -1,28 +1,62 @@
-name: Build & Publish Debug APK
+name: Build Pull Request
 
-on:
- push:
-  branches:
-   - master
-   
+on: pull_request
+
 jobs:
-  build:
+
+  test_job:
+    name: Test
+    runs-on: ubuntu-latest
+      steps:
+
+        - name: Checkout
+            uses: actions/checkout@v2
+
+        - name: Restore Cache
+            uses: actions/cache@v2
+            with:
+              path: |
+                ~/.gradle/caches
+                ~/.gradle/wrapper
+              key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+              restore-keys: |
+                ${{runner.os}}-gradle-
+
+        - name: Run Debug Tests
+          run: ./gradlew testDebugUnitTest --continue
+
+        - name: Upload Test Reports
+          if: ${{ always() }}
+          uses: actions/upload-artifact@v2
+          with:
+            name: test-reports
+            path: '**/build/reports/tests/'
+
+
+  assemble_job:
+    name: Assemble
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: Make Gradle executable
-      run: chmod +x ./gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
-    - name: Releasing using Hub
-      uses: ShaunLWM/action-release-debugapk@master
-      env:
-       GITHUB_TOKEN: ${{ secrets.TOKEN }}
-       APP_FOLDER: app
-       RELEASE_TITLE: New Build
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Restore Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{runner.os}}-gradle-
+
+      - name: Assemble Debug
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: Note_demo
+          path: app/build/outputs/apk/debug/**.apk
+
