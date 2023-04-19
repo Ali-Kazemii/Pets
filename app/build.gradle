@@ -76,7 +76,7 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
 
-    //Local unit tests
+    //Unit tests
     implementation("androidx.test:core-ktx:$test_core_ktx_version")
     testImplementation("junit:junit:$junit_version")
     testImplementation("com.google.truth:truth:$truth_version")
@@ -85,7 +85,7 @@ dependencies {
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version")
     testImplementation ("androidx.arch.core:core-testing:$test_core_version")
     testImplementation("androidx.room:room-testing:$room_version")
-    //Instrumented unit tests
+    //Instrumented tests
     androidTestImplementation("androidx.test:core-ktx:$test_core_ktx_version")
     androidTestImplementation("junit:junit:$junit_version")
     androidTestImplementation("androidx.test.ext:junit:$android_junit_version")
